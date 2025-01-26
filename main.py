@@ -27,6 +27,8 @@ GREEN = (0, 255, 0)
 YELLOW = (255, 255, 0)
 
 # Game screen
+icon = pygame.image.load(f"{ASSETS}/icon.png")
+pygame.display.set_icon(icon)
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Jackie Chan's Flight of the Dragon")
 clock = pygame.time.Clock()
@@ -154,7 +156,7 @@ def draw_message(text, subtext, screen_image, color=WHITE):
 # Game logic
 def game_loop():
     """Main game loop where Jackie plays through multiple rounds."""
-    round_number = 3
+    round_number = 1
     running = True
 
     while running:
@@ -188,7 +190,7 @@ def game_loop():
             record_text = SMALL_FONT.render(f"Record {RECORD_NUMBER}", True, BLACK) if RECORD_NUMBER else None
             screen.blit(round_text, (WIDTH - round_text.get_width() - 10, 10))
             if record_text:
-                screen.blit(record_text, (WIDTH - record_text.get_width() - 10, 50))
+                screen.blit(record_text, (WIDTH - record_text.get_width() - 12, 50))
 
             # Create obstacles
             if len(obstacles) <= max_obstacles:
