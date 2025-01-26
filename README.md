@@ -37,7 +37,7 @@ The carbon dioxide clouds represent greenhouse gas emissions. The game blends el
 
 ## Option 1
 
-Run an executable 
+Run an executable (Windows not supported)
 ### Steps
 1. Clone the repository:
    ```bash
