@@ -5,7 +5,6 @@ import random
 import sys
 import time
 
-# Initialize Pygame
 pygame.init()
 
 # Constants
@@ -69,6 +68,8 @@ next_round_image = pygame.transform.scale(next_round_image_asset, (WIDTH, HEIGHT
 sky_image_asset = pygame.image.load(os.path.join(ASSETS, "sky.png"))
 sky_image = pygame.transform.scale(sky_image_asset, (WIDTH, HEIGHT))
 
+
+# Fonts
 FONT = pygame.font.Font(None, 50)
 SMALL_FONT = pygame.font.Font(None, 30)
 
@@ -123,7 +124,6 @@ def draw_task():
 
         pygame.display.flip()
 
-        # Event handling
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 menu_sound.play()
@@ -153,7 +153,6 @@ def draw_message(text, subtext, screen_image, color=WHITE):
                 return
 
 
-# Game logic
 def game_loop():
     """Main game loop where Jackie plays through multiple rounds."""
     round_number = 1
@@ -203,7 +202,6 @@ def game_loop():
                 for i in range(random.randint(0, num_birds - len(birds))):
                     birds.append(create_bird(jackie_y))
 
-            # Handle events
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -242,10 +240,8 @@ def game_loop():
             # Get keys for horizontal movement
             keys = pygame.key.get_pressed()
             if keys[pygame.K_LEFT] and jackie_x > 0:
-                # jackie_x -= JACKIE_SPEED
                 jackie_vel -= jackie_acc
             if keys[pygame.K_RIGHT] and jackie_x < WIDTH - jackie_width:
-                # jackie_x += JACKIE_SPEED
                 jackie_vel += jackie_acc
 
             if not keys[pygame.K_RIGHT] and not keys[pygame.K_LEFT]:
@@ -265,6 +261,7 @@ def game_loop():
             jackie_y += jackie_fall_speed
             jackie_x += jackie_vel
 
+            # Forbid going beyound the screen
             if jackie_x > WIDTH - jackie_width:
                 jackie_x = WIDTH - jackie_width
             elif jackie_x < 0:
@@ -274,7 +271,7 @@ def game_loop():
             jackie_timer += jackie_animation_speed
             if jackie_timer >= 1:
                 jackie_timer = 0
-                jackie_frame = (jackie_frame + 1) % len(jackie_sprites)  # Loop through frames
+                jackie_frame = (jackie_frame + 1) % len(jackie_sprites)
 
             # Balloon movement
             balloon_x += balloon_speed
